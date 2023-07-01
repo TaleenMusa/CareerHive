@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://127.0.0.1:27017/products", {
+mongoose.connect("mongodb+srv://mahdisaqqa:x7YHirwTvZSYcnWN@cluster0.xzdysub.mongodb.net/careerhive", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
