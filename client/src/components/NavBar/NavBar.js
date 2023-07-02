@@ -1,6 +1,4 @@
 import './NavBar.css';
-import { Link } from 'react-router-dom';
-
 import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -35,33 +33,18 @@ const NavBar = () => {
     setAnchorElUser(null);
   };
 
-  const pages = ['Page 1', 'Page 2', 'Page 3']; // Define your pages here
-  const settings = ['Setting 1', 'Setting 2', 'Setting 3']; // Define your settings here
+  const menuItems = ['Home', 'Add job', 'My job', 'Search', 'Login']; // Define your menu items here
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
+          <AdbIcon className="logo-icon" />
+          <Typography variant="h6" noWrap component="a" href="/" className="logo">
             LOGO
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box className="nav-menu-toggle" display={{ xs: 'flex', md: 'none' }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -86,56 +69,45 @@ const NavBar = () => {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              className="nav-menu-mobile"
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {menuItems.map((item) => (
+                <MenuItem key={item} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{item}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <AdbIcon className="logo-icon-mobile" />
           <Typography
             variant="h5"
             noWrap
             component="a"
             href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+            className="logo-mobile"
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+          <Box className="nav-menu-desktop" display={{ xs: 'none', md: 'flex' }}>
+            {menuItems.map((item) => (
               <Button
-                key={page}
+                key={item}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                className="nav-menu-item"
               >
-                {page}
+                {item}
               </Button>
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box className="user-menu">
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} className="user-avatar-button">
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              className="user-menu-popup"
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -150,9 +122,9 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {menuItems.map((item) => (
+                <MenuItem key={item} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{item}</Typography>
                 </MenuItem>
               ))}
             </Menu>
