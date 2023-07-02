@@ -16,17 +16,16 @@ const NavBar = () => {
     { label: 'Home', path: '/' },
     { label: 'Add job', path: '/add-job' },
     { label: 'My job', path: '/my-job' },
-
   ];
 
   return (
     <AppBar position="static" className="navbar">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters className="toolbar">
           <Typography variant="h6" noWrap component={Link} to="/" className="logo">
-            <img src="/logo.png" alt="Logo" className="logo-image" />
+            <img src="/images/logo.png" alt="CareerHive" className="logo-image" />
+            <span className="logo-name">CareerHive</span>
           </Typography>
-
 
           <Box className="nav-menu">
             {menuItems.map((item) => (
@@ -35,7 +34,6 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
-
 
           <Box className="search-box">
             <TextField
