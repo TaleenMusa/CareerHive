@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Form, Route, Routes } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 
@@ -7,8 +7,8 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
-        <Route path="/about" element={<h1>About</h1>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Form />} />
       </Routes>
     </div>
   );
