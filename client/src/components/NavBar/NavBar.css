@@ -9,7 +9,7 @@
     font-family: monospace;
     font-weight: 700;
     letter-spacing: 0.3rem;
-    color: inherit;
+    color: black;
     text-decoration: none;
   }
   
@@ -35,7 +35,7 @@
     font-family: monospace;
     font-weight: 700;
     letter-spacing: 0.3rem;
-    color: inherit;
+    color: black;
     text-decoration: none;
   }
   
@@ -46,7 +46,7 @@
   
   .nav-menu-item {
     margin-top: 2rem;
-    color: white;
+    color: black;
     display: block;
   }
   
@@ -60,5 +60,15 @@
   
   .user-menu-popup {
     margin-top: 45px;
+  }
+  
+  /* Updated styles for the navbar */
+  .AppBar-root {
+    background-color: white ;
+    color: black !important;
+  }
+  
+  .nav-menu-item {
+    color: black !important;
   }
   

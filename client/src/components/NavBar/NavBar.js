@@ -1,133 +1,55 @@
 import './NavBar.css';
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import TextField from '@mui/material/TextField';
+import SearchIcon from '@mui/icons-material/Search';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const NavBar = () => {
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  const menuItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Add job', path: '/add-job' },
+    { label: 'My job', path: '/my-job' },
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const menuItems = ['Home', 'Add job', 'My job', 'Search', 'Login']; // Define your menu items here
+  ];
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="navbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon className="logo-icon" />
-          <Typography variant="h6" noWrap component="a" href="/" className="logo">
-            LOGO
+          <Typography variant="h6" noWrap component={Link} to="/" className="logo">
+            <img src="/logo.png" alt="Logo" className="logo-image" />
           </Typography>
 
-          <Box className="nav-menu-toggle" display={{ xs: 'flex', md: 'none' }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              className="nav-menu-mobile"
-            >
-              {menuItems.map((item) => (
-                <MenuItem key={item} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{item}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon className="logo-icon-mobile" />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            className="logo-mobile"
-          >
-            LOGO
-          </Typography>
-          <Box className="nav-menu-desktop" display={{ xs: 'none', md: 'flex' }}>
+
+          <Box className="nav-menu">
             {menuItems.map((item) => (
-              <Button
-                key={item}
-                onClick={handleCloseNavMenu}
-                className="nav-menu-item"
-              >
-                {item}
+              <Button key={item.label} component={Link} to={item.path} className="nav-menu-item">
+                {item.label}
               </Button>
             ))}
           </Box>
 
+
+          <Box className="search-box">
+            <TextField
+              placeholder="Search"
+              variant="outlined"
+              size="small"
+              InputProps={{
+                startAdornment: <SearchIcon className="search-icon" />,
+              }}
+            />
+          </Box>
+
           <Box className="user-menu">
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} className="user-avatar-button">
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              className="user-menu-popup"
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {menuItems.map((item) => (
-                <MenuItem key={item} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{item}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            <AccountCircleIcon className="user-icon" />
           </Box>
         </Toolbar>
       </Container>
