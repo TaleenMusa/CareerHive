@@ -8,7 +8,7 @@ function App() {
       <NavBar />
       <Routes>
       <Route path="/" element={<Home />} />
-      {/* <Route path="/" element={<Form />} /> */}
+      <Route path="/Add" element={<Form />} />
       </Routes>
     </div>
   );
