@@ -1,0 +1,46 @@
+    .add-job-form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+    }
+    
+    .add-job-form label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    
+    .add-job-form input[type="text"],
+    .add-job-form textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .add-job-form textarea {
+        height: 100px;
+    }
+    
+    .add-job-form button[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .add-job-form button[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    
+    .add-job-form button[type="submit"]:focus {
+        outline: none;
+    }
+    

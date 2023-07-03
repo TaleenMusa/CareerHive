@@ -1,14 +1,20 @@
-import { Route, Routes } from 'react-router-dom';
+import { Form, Route, Routes } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
-
+import LogReg from './views/Logreg/LogReg';
+import Dashboard from './components/LogReg/Dashboard';
+import Info from './views/Information/Info';
+import Home from './views/Home/Home';
 function App() {
   return (
     <div className="App">
-      <NavBar />
+
+<Info/>
+      
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
-        <Route path="/about" element={<h1>About</h1>} />
+
+      <Route path="/" element={<Home />} />
+      <Route path="/Add" element={<Form />} />
       </Routes>
     </div>
   );
