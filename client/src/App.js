@@ -32,11 +32,11 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Home  user={user}/>} />
-        <Route path="/Add" element={<Form user={user}/>} />
-        <Route path="/LogReg" element={<LogReg />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Info/:id" element={<Info />} />
-        <Route path="/Admin" element= {<Admin user={Admin}/>}/>
+        <Route path="/add" element={<Form user={user}/>} />
+        <Route path="/logReg" element={<LogReg />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/info/:id" element={<Info />} />
+        <Route path="/admin" element= {<Admin user={Admin}/>}/>
       </Routes>
     </div>
   );

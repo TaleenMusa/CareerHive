@@ -8,7 +8,6 @@ const SuperAdmin = () => {
   if (!isAdmin) {
     return <Redirect to="/Dashboard"/>;
   }
-
   return (
     <div>
       <Admin jobData={[]} /> 

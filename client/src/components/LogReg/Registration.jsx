@@ -120,7 +120,10 @@ const Registration = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={register} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={register} sx={{ mt: 3, marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center' }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
