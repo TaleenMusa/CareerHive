@@ -20,6 +20,11 @@ module.exports = {
             .catch(err => res.json(err.errors))
     }
     ,
+    index: (req, res) => {
+        Category.find({})
+            .then(categories => res.json(categories))
+            .catch(err => res.status(400).json(err));
+    }
 
 }
 

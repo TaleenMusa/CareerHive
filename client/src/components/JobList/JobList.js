@@ -7,6 +7,13 @@ import { useNavigate } from 'react-router-dom';
         const navigate = useNavigate();
         const {user,jobData} = props
 
+        const date = new Date(); // Replace this with your date variable
+
+const options = {
+  day: '2-digit',
+  month: '2-digit',
+  year: '2-digit'
+};
 
     const tableStyle = {
         borderCollapse: 'collapse',
@@ -59,11 +66,13 @@ import { useNavigate } from 'react-router-dom';
                 }}
                 >
                 <td onClick={()=>{navigate(`/info/${job._id}`)}} style={tdStyle}>{job.title}</td>
-                <td onClick={()=>{navigate(`/category/${job.category._id}`)}}  style={tdStyle}>{job.category.Category}</td>
-                <td onClick={()=>{navigate(`/city/${job.location._id}`)}}  style={tdStyle}>{job.location.location}</td>
-                <td style={tdStyle}>{job.companyname}</td>
-                <td style={tdStyle}>{job.createdAt}</td>
-                <td style={tdStyle}>{job.deadline}</td>
+                <td style={tdStyle}>{job.company}</td>
+                
+
+                {job.location ? <td onClick={()=>{navigate(`/city/${job.location._id}`)}}  style={tdStyle}>{job.location.location}</td> : <td style={tdStyle}>No Location</td>}
+                {job.category ? <td onClick={()=>{navigate(`/category/${job.category._id}`)}}  style={tdStyle}>{job.category.Category}</td> : <td style={tdStyle}>No Category</td>}
+                <td style={tdStyle}>{job.createdAt ? new Date(job.createdAt).toLocaleDateString('en-GB', options) : ''}</td>
+                <td style={tdStyle}>{job.deadline ? new Date(job.deadline).toLocaleDateString('en-GB', options) : ''}</td>
                 </tr>
             ))}
             </tbody>

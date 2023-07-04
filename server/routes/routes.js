@@ -16,8 +16,8 @@ module.exports = app=>{
     app.get("/api/users/:id/jobs", Jobs.userJobs)
     app.post("/api/locations", Locations.create)
     app.get("/api/locations", Locations.index)
-    app.get("/api", Jobs.updateJobs)
     app.post("/api/category",Categories.create)
+    app.get("/api/category", Categories.index)
     
 
 

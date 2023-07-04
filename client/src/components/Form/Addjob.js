@@ -12,6 +12,16 @@ import { useNavigate } from 'react-router-dom'
             navigate("/logReg")
         }
     const [locations, setLocations] = useState([])
+    const [categories, setCategories] = useState([])
+        useEffect(() => {
+            axios.get("http://localhost:8000/api/category")
+                .then(res => {
+                    console.log(res.data)
+                    setCategories(res.data)
+                })
+                .catch(err => console.log(err))
+        }, [])
+
     const {user} = props
     console.log(user)
     const [companyName, setCompanyName] = useState('');
@@ -34,12 +44,23 @@ import { useNavigate } from 'react-router-dom'
         
         e.preventDefault();
         console.log("submitting")
-        console.log(area)
+        console.log({
+            companyName,
+            companyLogo,
+            jobTitle,
+            category: category.value,
+            requirements,
+            jobDescription,
+            area,
+            deadline,
+            userId: user._id,
+            locationId: area.value
+        })
         axios.post("http://localhost:8000/api/jobs", {
             companyName,
             companyLogo,
             jobTitle,
-            category,
+            category: category.value,
             requirements,
             jobDescription,
             area,
@@ -84,15 +105,7 @@ import { useNavigate } from 'react-router-dom'
             onChange={(e) => setJobTitle(e.target.value)}
             />
         </div>
-        <div>
-            <label htmlFor="category">Category:</label>
-            <input
-            type="text"
-            id="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            />
-        </div>
+
         <div>
             <label htmlFor="requirements">Requirements:</label>
             <textarea
@@ -119,6 +132,19 @@ import { useNavigate } from 'react-router-dom'
                     }}
                     options={locations.map((location) => {
                         return { value: location._id, label: location.location };
+                    })}
+                />
+        </div>
+        <div>
+            <label htmlFor="area">Category:</label>
+            <Select
+                    id="category"
+                    value={category}
+                    onChange={(selectedOption) => {
+                        setCategory(selectedOption)
+                    }}
+                    options={categories.map((category) => {
+                        return { value: category._id, label: category.Category };
                     })}
                 />
         </div>
