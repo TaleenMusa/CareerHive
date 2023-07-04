@@ -18,7 +18,7 @@ app.use(cookies());
 require("./config/mongoose.config")
 
 //require our routes and tell it about our app
-require("./routes/user.routes")(app)
+require("./routes/routes")(app)
 
 
 app.listen(

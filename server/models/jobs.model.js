@@ -18,7 +18,7 @@ const Job = (props) => {
     <Paper
       sx={{
         position: 'relative',
-        
+        backgroundColor: 'grey.800',
         color: '#fff',
         mb: 4,
         backgroundSize: 'cover',
@@ -40,29 +40,29 @@ const Job = (props) => {
         }}
       />
       <Grid container>
-      <Grid item md={6}>
-  <Box
-    sx={{
-      position: 'relative',
-      p: { xs: 3, md: 6 },
-      pr: { md: 0 },
-    }}
-  >
-    <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-      {job.title}
-    </Typography>
-    <Typography variant="h5" color="inherit" paragraph>
-      {job.description}
-    </Typography>
-    <Typography variant="body1" color="inherit" gutterBottom>
-      Requirements: {job.requirements}
-    </Typography>
-    <Typography variant="body1" color="inherit" gutterBottom>
-      Deadline: {job.deadline}
-    </Typography>
-    <Button variant="contained" onClick={handleApplyNow}>Apply Now</Button>
-  </Box>
-</Grid>
+        <Grid item md={6}>
+          <Box
+            sx={{
+              position: 'relative',
+              p: { xs: 3, md: 6 },
+              pr: { md: 0 },
+            }}
+          >
+            <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+              {job.title}
+            </Typography>
+            <Typography variant="h5" color="inherit" paragraph>
+              {job.description}
+            </Typography>
+            <Typography variant="body1" color="inherit" gutterBottom>
+              Requirements: {job.requirements}
+            </Typography>
+            <Typography variant="body1" color="inherit" gutterBottom>
+              Deadline: {job.deadline}
+            </Typography>
+            <Button variant="contained" onClick={handleApplyNow}>Apply Now</Button>
+          </Box>
+        </Grid>
       </Grid>
     </Paper>
   );
@@ -75,7 +75,9 @@ Job.propTypes = {
     imageText: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     companyWebsite: PropTypes.string.isRequired,
+    requirements: PropTypes.string.isRequired,
+    deadline: PropTypes.string.isRequired,
   }).isRequired,
 };
-                       
+
 export default Job;

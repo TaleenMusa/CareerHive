@@ -1,25 +1,10 @@
-    import React from 'react';
+    import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
-    const JobList = () => {
-    const jobData = [
-        {
-        id: 1,
-        title: 'Job Title 1',
-        category: 'Category 1',
-        location: 'Location 1',
-        publishDate: '2023-07-01',
-        deadline: '2023-07-15',
-        },
-        {
-        id: 2,
-        title: 'Job Title 2',
-        category: 'Category 2',
-        location: 'Location 2',
-        publishDate: '2023-07-02',
-        deadline: '2023-07-16',
-        },
-        // Add more job objects as needed
-    ];
+    const JobList = (props) => {
+        const {user,jobData} = props
+
 
     const tableStyle = {
         borderCollapse: 'collapse',
@@ -73,7 +58,7 @@
                 <td style={tdStyle}>{job.title}</td>
                 <td style={tdStyle}>{job.category}</td>
                 <td style={tdStyle}>{job.location}</td>
-                <td style={tdStyle}>{job.publishDate}</td>
+                <td style={tdStyle}>{job.createdAt}</td>
                 <td style={tdStyle}>{job.deadline}</td>
                 </tr>
             ))}

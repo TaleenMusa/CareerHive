@@ -36,6 +36,8 @@ const UserSchema = new mongoose.Schema({
             message: "Age must be over 18"
         }
     },
+    jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }]
+
 
   }, {timestamps: true});
 

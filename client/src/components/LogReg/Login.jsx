@@ -15,10 +15,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { useNavigate } from 'react-router-dom';
+import { sizing } from '@mui/system';
 const Login = () => {
   const { handleSubmit, register, formState: { errors } } = useForm();
   const [errormsg, seterrormsg] = useState(null);
+  const navigate = useNavigate();
 
   const login = (data) => {
     axios
@@ -26,7 +28,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         if (res.data.msg === 'success!') {
-          history.push('/dashboard');
+          navigate('/dashboard');
         } else {
           seterrormsg(res.data.msg);
         }
@@ -38,7 +40,7 @@ const Login = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xl">
         <CssBaseline />
         <Box
           sx={{
@@ -54,17 +56,20 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit(login)} noValidate sx={{ mt: 1 }}>
+          <Box component="form"width="65%" onSubmit={handleSubmit(login)} noValidate sx={{ mt: 3, marginTop: 8,display: 'flex',flexDirection: 'column',
+            
+            alignItems: 'center'}}>
+              <Grid item xl={12}>
             <TextField
-              margin="normal"
+              
               required
               fullWidth
               id="email"
               label="Email Address"
-              name="email"
+              name="Email"
               autoComplete="email"
               autoFocus
-              {...register('email', {
+              {...register('Email', {
                 required: 'Email is required',
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
@@ -74,16 +79,17 @@ const Login = () => {
               error={Boolean(errors.email)}
               helperText={errors.email?.message}
             />
+            </Grid>
             <TextField
               margin="normal"
               required
               fullWidth
               name="password"
-              label="Password"
+              label="password"
               type="password"
               id="password"
               autoComplete="current-password"
-              {...register('password', { required: 'Password is required' })}
+              {...register('Password', { required: 'Password is required' })}
               error={Boolean(errors.password)}
               helperText={errors.password?.message}
             />
