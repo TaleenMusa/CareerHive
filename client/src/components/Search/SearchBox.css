@@ -4,6 +4,7 @@ nav {
   align-items: center;
   border: 1px solid #ccc;
   padding: 1rem;
+
 }
 
 form {
@@ -19,7 +20,7 @@ input[type="text"] {
 
 button[type="submit"] {
   padding: 0.5rem 1rem;
-  background-color: #007bff;
+  background-color: grey;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -34,10 +35,11 @@ button[type="submit"]:hover {
 .select-container {
   display: flex;
   justify-content: space-between;
+  /* margin-right: 2rem; */
 }
 
 .select-container > div {
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 
 .search-input {
@@ -49,6 +51,7 @@ button[type="submit"]:hover {
   border-radius: 15px;
   overflow: hidden;
   transition: width 0.75s ease;
+  /* margin-right: 2rem; */
 }
 
 .search-input:hover {
@@ -65,3 +68,11 @@ button[type="submit"]:hover {
   width: 400px;
   padding-inline: 1.5rem;
 }
+
+.searchbox-container > div{
+display: flex;
+gap: 20px;
+width: '90%';
+margin:auto;
+}
+

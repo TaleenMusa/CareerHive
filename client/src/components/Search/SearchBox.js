@@ -22,16 +22,15 @@
 
     return (
         <nav className="searchbox-container">
+            
         <div>
-            <form onSubmit={handleSearch}>
             <input type="text" placeholder="Search" className="search-input" />
-            <button type="submit" className="search-button">Search</button>
-            </form>
-        </div>
-        <div className="select-container">
             <Select options={categories} placeholder="Select Category" className="select-category" />
             <Select options={areas} placeholder="Select Area" className="select-area" />
+            <button type="submit" className="search-button">Search</button>
+            
         </div>
+
         </nav>
     );
     };

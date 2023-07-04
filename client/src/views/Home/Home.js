@@ -4,6 +4,7 @@ import SearchBox from '../../components/Search/SearchBox';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import './Home.css'
 const Home = (props) => {
   console.log("Home")
   console.log(props.user)
@@ -24,7 +25,7 @@ const Home = (props) => {
     <div>
           <SearchBox />
 
-    <h1>All Jobs</h1>
+    <h3 className='my-3  text-center'>All Jobs:</h3>
     <JobList jobData={jobData} user={user}/>
   </div>
   )
