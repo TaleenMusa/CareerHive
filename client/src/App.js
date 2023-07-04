@@ -9,6 +9,7 @@ import Home from './views/Home/Home';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import Admin from './views/Admin/SuperAdmin';
 function App() {
   const [user, setUser] = useState(null);
   const userId = localStorage.getItem('user');
@@ -35,6 +36,7 @@ function App() {
         <Route path="/LogReg" element={<LogReg />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Info/:id" element={<Info />} />
+        <Route path="/Admin" element= {<Admin user={Admin}/>}/>
       </Routes>
     </div>
   );
