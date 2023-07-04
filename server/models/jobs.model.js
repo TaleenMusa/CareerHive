@@ -12,25 +12,9 @@ const JobSchema = new mongoose.Schema({
         required: [true, "Description is required"],
         minlength: [2, "Description must be 2 characters or longer"]
     },
-    // contact: {
-    //     type: String,
-    //     required: [true, "Contact is required"],
-    //     minlength: [2, "Contact must be 2 characters or longer"]
-    // },
-
-    image: {
-        type: String,
-        required: [true, "Image is required"],
-        minlength: [2, "Image must be 2 characters or longer"]
-    },
     deadline: {
         type: Date,
         required: [true, "Date is required"],
-    },
-    company: {
-        type: String,
-        required: [true, "Company is required"],
-        minlength: [2, "Company must be 2 characters or longer"]
     },
     requirements: {
         type: String,

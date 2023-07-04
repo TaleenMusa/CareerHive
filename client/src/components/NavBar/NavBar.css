@@ -1,11 +1,14 @@
 .navbar {
   background-color: white !important;
+  align-items: center;
+
 }
 
 .toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .logo {
@@ -25,12 +28,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 40%;
 }
 
 .nav-menu-item {
   margin-left: 1rem;
   color: black !important;
   text-decoration: none;
+
 }
 
 .search-box {
@@ -47,7 +52,7 @@
 
 .user-icon {
   color: black;
-  font-size: 3.5rem;
+ 
 }
 
 

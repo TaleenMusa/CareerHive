@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
         const navigate = useNavigate();
         const {user,jobData} = props
 
-        const date = new Date(); // Replace this with your date variable
 
 const options = {
   day: '2-digit',
@@ -17,7 +16,8 @@ const options = {
 
     const tableStyle = {
         borderCollapse: 'collapse',
-        width: '100%',
+        width: '90%',
+        margin: 'auto',
     };
 
     const thStyle = {

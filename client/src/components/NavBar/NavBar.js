@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { display } from '@mui/system';
 
 const NavBar = () => {
   const menuItems = [
@@ -17,9 +18,9 @@ const NavBar = () => {
   ];
 
   return (
-    <AppBar position="static" className="navbar">
+    <AppBar position="static" className="navbar" >
       <Container maxWidth="xl">
-        <Toolbar disableGutters className="toolbar">
+        <Toolbar disableGutters className="toolbar"sx={{display:'flex',alignItems:'center',justifyContent:'space-between', width: '90%',margin:'auto'}} >
           <Typography variant="h6" noWrap component={Link} to="/" className="logo">
             <img src="/images/logo.png" alt="CareerHive" className="logo-image" />
             <span className="logo-name">CareerHive</span>
@@ -34,7 +35,7 @@ const NavBar = () => {
           </Box>
 
           <Box className="user-menu">
-            <AccountCircleIcon className="user-icon" />
+            <AccountCircleIcon className="user-icon" fontSize='large' />
           </Box>
         </Toolbar>
       </Container>
