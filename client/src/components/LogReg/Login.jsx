@@ -15,10 +15,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { handleSubmit, register, formState: { errors } } = useForm();
   const [errormsg, seterrormsg] = useState(null);
+  const navigate = useNavigate();
 
   const login = (data) => {
     axios
@@ -26,7 +28,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         if (res.data.msg === 'success!') {
-          history.push('/dashboard');
+          navigate('/dashboard');
         } else {
           seterrormsg(res.data.msg);
         }
@@ -64,7 +66,7 @@ const Login = () => {
               name="email"
               autoComplete="email"
               autoFocus
-              {...register('email', {
+              {...register('Email', {
                 required: 'Email is required',
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
@@ -83,7 +85,7 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
-              {...register('password', { required: 'Password is required' })}
+              {...register('Password', { required: 'Password is required' })}
               error={Boolean(errors.password)}
               helperText={errors.password?.message}
             />

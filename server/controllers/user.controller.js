@@ -30,7 +30,11 @@ class UserController {
                                 res.json({msg: "invalid login attempt- password incorrect"})
                             }
                         })
-                        .catch(err=> res.json({msg: "invalid login attempt", err}) )
+                        .catch(err=> {
+                            console.log("password failed")
+                            console.log(err)
+                            res.json({msg: "invalid login attempt", err})
+                        } )
                 }
             })
             .catch(err=> res.json(err))

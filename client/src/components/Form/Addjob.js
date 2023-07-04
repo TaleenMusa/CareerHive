@@ -2,8 +2,14 @@
     import Select from 'react-select';
     import DatePicker from 'react-datepicker';
     import 'react-datepicker/dist/react-datepicker.css';
-
-    const AddJob = () => {
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
+    
+    const AddJob = (props) => {
+        const navigate = useNavigate()
+        
+    const {user} = props
+    console.log(user)
     const [companyName, setCompanyName] = useState('');
     const [companyLogo, setCompanyLogo] = useState('');
     const [jobTitle, setJobTitle] = useState('');
@@ -14,26 +20,26 @@
     const [deadline, setDeadline] = useState(null);
 
     const handleSubmit = (e) => {
+        
         e.preventDefault();
-        console.log({
-        companyName,
-        companyLogo,
-        jobTitle,
-        category,
-        requirements,
-        jobDescription,
-        area,
-        deadline,
-        });
+        console.log("submitting")
+        axios.post("http://localhost:8000/api/jobs", {
+            companyName,
+            companyLogo,
+            jobTitle,
+            category,
+            requirements,
+            jobDescription,
+            area,
+            deadline,
+            userId: user._id
+        }, {withCredentials: true})
+        .then(res =>{
+            console.log(res)
+            navigate("/")
+        })
+        .catch(err => console.log(err))
 
-        setCompanyName('');
-        setCompanyLogo('');
-        setJobTitle('');
-        setCategory('');
-        setRequirements('');
-        setJobDescription('');
-        setArea('');
-        setDeadline(null);
     };
 
     return (
