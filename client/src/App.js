@@ -20,21 +20,32 @@ function App() {
         .catch(err => console.log(err))
     
   }, [])
+  const [location, setLocation] = useState('');
   useEffect(() => {
     localStorage.setItem('user', user?._id)
   }, [user])
+  const addLocation = (e) => {
+    e.preventDefault();
+    axios.post("http://localhost:8000/api/locations", location)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  } 
+
 
   return (
     <div className="App">
-
+      <form onSubmit={addLocation}>
+        <input type="text" onChange={(e) => setLocation(e.target.value)} />
+        <input type="submit"  />
+      </form>
       <NavBar user={user} setUser={setUser}/>
       
       <Routes>
         <Route path="/" element={<Home  user={user}/>} />
-        <Route path="/Add" element={<Form user={user}/>} />
-        <Route path="/LogReg" element={<LogReg />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Info/:id" element={<Info />} />
+        <Route path="/add" element={<Form user={user}/>} />
+        <Route path="/logreg" element={<LogReg />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/info/" element={<Info />} />
       </Routes>
     </div>
   );

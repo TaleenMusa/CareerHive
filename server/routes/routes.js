@@ -1,5 +1,6 @@
 const Users = require("../controllers/user.controller");
 const Jobs = require("../controllers/jobs.controller");
+const Locations = require("../controllers/locations.controller");
 const {authenticate } = require("../config/jwt.config");
 
 
@@ -12,6 +13,8 @@ module.exports = app=>{
     app.get("/api/jobs", Jobs.allJobs)
     app.get("/api/jobs/:id", Jobs.oneJob)
     app.get("/api/users/:id/jobs", Jobs.userJobs)
+    app.post("/api/locations", Locations.create)
+    
 
 
 }
