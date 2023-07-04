@@ -15,15 +15,11 @@
     }
     
     .job-list-table th {
-        background-color: #f2f2f2;
         text-align: left;
     }
     
-    .job-list-table tr:nth-child(even) {
-        background-color: #f9f9f9;
+
+    .table-dark>tbody>tr:nth-of-type(odd)>* {
+        --bs-table-color-type:#fff; ;
+        --bs-table-bg-type: #484b4f;
     }
-    
-    .job-list-table tr:hover {
-        background-color: #e9e9e9;
-    }
-    

@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import './Home.css'
 const Home = (props) => {
+  const {mood, setMood} = props
+  const {dark, setDark} = props
   console.log("Home")
   console.log(props.user)
   const {user} = props
@@ -22,11 +24,11 @@ const Home = (props) => {
           });
   }, []);
   return (
-    <div>
+    <div style={mood}>
           <SearchBox />
 
     <h3 className='my-3  text-center'>All Jobs:</h3>
-    <JobList jobData={jobData} user={user}/>
+    <JobList jobData={jobData} user={user} dark={dark}/>
   </div>
   )
 }

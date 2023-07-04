@@ -129,6 +129,7 @@
             />
         </div>
 
+
         <div className='box2'style={{ display: 'flex' }}>
 
         <label htmlFor="deadline">Deadline:</label>
@@ -150,7 +151,6 @@
                 return { value: location._id, label: location.location };
             })}
             />
-
 
         </div>
 

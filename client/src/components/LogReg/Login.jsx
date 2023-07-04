@@ -17,18 +17,28 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { sizing } from '@mui/system';
-const Login = () => {
+const Login = (props) => {
+  const { user, setUser } = props;
   const { handleSubmit, register, formState: { errors } } = useForm();
   const [errormsg, seterrormsg] = useState(null);
   const navigate = useNavigate();
 
+  if (user) {
+    navigate('/');
+  }
   const login = (data) => {
     axios
       .post('http://localhost:8000/api/login', data, { withCredentials: true })
       .then((res) => {
         console.log(res);
         if (res.data.msg === 'success!') {
-          navigate('/dashboard');
+          axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
+          .then(r => {
+            setUser(r.data.user)
+            navigate('/');
+          })
+          .catch(err => console.log(err))
+          
         } else {
           seterrormsg(res.data.msg);
         }
@@ -56,7 +66,7 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form"width="65%" onSubmit={handleSubmit(login)} noValidate sx={{ mt: 3, marginTop: 8,display: 'flex',flexDirection: 'column',
+          <Box component="form" onSubmit={handleSubmit(login)} noValidate sx={{ mt: 3, marginTop: 8,display: 'flex',flexDirection: 'column',
             
             alignItems: 'center'}}>
               <Grid item xl={12}>
@@ -66,7 +76,7 @@ const Login = () => {
               fullWidth
               id="email"
               label="Email Address"
-              name="Email"
+              name="email"
               autoComplete="email"
               autoFocus
               {...register('Email', {
