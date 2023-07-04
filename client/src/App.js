@@ -27,7 +27,7 @@ function App() {
   }, [user])
   const addLocation = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8000/api/locations", location)
+    axios.post("http://localhost:8000/api/locations", {location:location})
       .then(res => console.log(res))
       .catch(err => console.log(err))
   } 
