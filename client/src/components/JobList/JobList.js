@@ -1,8 +1,10 @@
     import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
     const JobList = (props) => {
+        const navigate = useNavigate();
         const {user,jobData} = props
 
         console.log(jobData);
@@ -58,10 +60,10 @@ import { useState } from 'react';
                     e.target.style.backgroundColor = evenRowStyle.backgroundColor;
                 }}
                 >
-                <td style={tdStyle}>{job.title}</td>
+                <td onClick={()=>{navigate(`/info/${job._id}`)}} style={tdStyle}>{job.title}</td>
+                <td onClick={()=>{navigate(`/category/${job.category._id}`)}}  style={tdStyle}>{job.category.Category}</td>
+                <td onClick={()=>{navigate(`/city/${job.location._id}`)}}  style={tdStyle}>{job.location.location}</td>
                 <td style={tdStyle}>{job.companyname}</td>
-                <td style={tdStyle}>{job.category}</td>
-                <td style={tdStyle}>{job.location}</td>
                 <td style={tdStyle}>{job.createdAt}</td>
                 <td style={tdStyle}>{job.deadline}</td>
                 </tr>

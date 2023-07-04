@@ -14,6 +14,7 @@ const Home = (props) => {
       axios
           .get('http://localhost:8000/api/jobs')
           .then((res) => {
+              console.log(res.data);
               setJobData(res.data);
           })
           .catch((err) => {
