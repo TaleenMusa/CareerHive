@@ -20,19 +20,21 @@ const Info = () => {
     image: 'path/to/image.jpg',
     imageText: 'Image Text',
     linkText: 'Read More',
+    requirements: '',
+    deadline: '',
   };
 
   return (
     <div>
-        <Grid container spacing={4}>
-      <Grid item xs={12} md={6}>
-              <CompanyInfo {...companyData} />
+    <Grid container spacing={4}>
+      <Grid item xs={12} md={3}>
+        <CompanyInfo {...companyData} />
       </Grid>
       <Grid item xs={12} md={6}>
-      <Job job={jobData} /> 
+        <Job job={jobData} />
       </Grid>
     </Grid>
-    </div>
+  </div>
   );
 };
 

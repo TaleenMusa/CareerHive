@@ -11,7 +11,7 @@ const CompanyInfo = (props) => {
   return (
     <Grid item xs={12} md={4}>
       <Paper elevation={0} sx={{ p: 2, bgcolor: 'grey.200' }}>
-        <img src={logo} alt={name} style={{ width: '100%', marginBottom: '1rem' }} />
+        <img src={logo}  style={{ width: '100%', marginBottom: '1rem' }} />
         <Typography variant="h6" gutterBottom>
           {name}
         </Typography>
