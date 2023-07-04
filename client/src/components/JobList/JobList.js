@@ -37,10 +37,11 @@ import { useState } from 'react';
             <thead>
             <tr>
                 <th style={thStyle}>Title</th>
-                <th style={thStyle}>Category</th>
+                <th style={thStyle}>Company Name</th>
                 <th style={thStyle}>Location</th>
+                <th style={thStyle}>Category</th>
                 <th style={thStyle}>Publish Date</th>
-                <th style={thStyle}>Deadline</th>
+                <th style={thStyle}>DeadLine</th>
             </tr>
             </thead>
             <tbody>
@@ -56,6 +57,7 @@ import { useState } from 'react';
                 }}
                 >
                 <td style={tdStyle}>{job.title}</td>
+                <td style={tdStyle}>{job.companyname}</td>
                 <td style={tdStyle}>{job.category}</td>
                 <td style={tdStyle}>{job.location}</td>
                 <td style={tdStyle}>{job.createdAt}</td>
