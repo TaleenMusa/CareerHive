@@ -39,10 +39,11 @@ import { useNavigate } from 'react-router-dom';
             <thead>
             <tr>
                 <th style={thStyle}>Title</th>
-                <th style={thStyle}>Category</th>
+                <th style={thStyle}>Company Name</th>
                 <th style={thStyle}>Location</th>
+                <th style={thStyle}>Category</th>
                 <th style={thStyle}>Publish Date</th>
-                <th style={thStyle}>Deadline</th>
+                <th style={thStyle}>DeadLine</th>
             </tr>
             </thead>
             <tbody>
@@ -60,6 +61,7 @@ import { useNavigate } from 'react-router-dom';
                 <td onClick={()=>{navigate(`/info/${job._id}`)}} style={tdStyle}>{job.title}</td>
                 <td onClick={()=>{navigate(`/category/${job.category._id}`)}}  style={tdStyle}>{job.category.Category}</td>
                 <td onClick={()=>{navigate(`/city/${job.location._id}`)}}  style={tdStyle}>{job.location.location}</td>
+                <td style={tdStyle}>{job.companyname}</td>
                 <td style={tdStyle}>{job.createdAt}</td>
                 <td style={tdStyle}>{job.deadline}</td>
                 </tr>
