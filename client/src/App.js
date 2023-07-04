@@ -46,8 +46,8 @@ function App() {
 
       
       <Routes>
-        <Route path="/" element={<Home  user={user}/>} />
-        <Route path="/add" element={<Form user={user}/>} />
+        <Route exact path="/" element={<Home  user={user}/>} />
+        <Route exact path="/add" element={<Form user={user}/>} />
 
         <Route path="/logReg" element={<LogReg />} />
         <Route path="/dashboard" element={<Dashboard />} />

@@ -5,10 +5,12 @@ import { useState } from 'react';
     const JobList = (props) => {
         const {user,jobData} = props
 
+        console.log(jobData);
 
     const tableStyle = {
         borderCollapse: 'collapse',
-        width: '100%',
+        width: '90%',
+        margin: 'auto',
     };
 
     const thStyle = {

@@ -1,83 +1,53 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+const mongoose = require("mongoose");
 
-const Job = (props) => {
-  const { job } = props;
 
-  const handleApplyNow = () => {
-    window.location.href = job.companyWebsite; // Redirect to the company website
-  };
+const JobSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, "Title is required"],
+        minlength: [2, "Title must be 2 characters or longer"]
+    },
+    description: {
+        type: String,
+        required: [true, "Description is required"],
+        minlength: [2, "Description must be 2 characters or longer"]
+    },
+    // location: {
+    //     type: String,
+    //     required: [true, "Location is required"],
+    //     minlength: [2, "Location must be 2 characters or longer"]
+    // },
+    // contact: {
+    //     type: String,
+    //     required: [true, "Contact is required"],
+    //     minlength: [2, "Contact must be 2 characters or longer"]
+    // },
+    category: {
+        type: String,
+        required: [true, "Category is required"],
+        minlength: [2, "Category must be 2 characters or longer"]
+    },
+    image: {
+        type: String,
+        required: [true, "Image is required"],
+        minlength: [2, "Image must be 2 characters or longer"]
+    },
+    deadline: {
+        type: Date,
+        required: [true, "Date is required"],
+    },
+    company: {
+        type: String,
+        required: [true, "Company is required"],
+        minlength: [2, "Company must be 2 characters or longer"]
+    },
+    requirements: {
+        type: String,
+        required: [true, "Requirements is required"],
+        minlength: [2, "Requirements must be 2 characters or longer"]
+    },
+}, { timestamps: true });
 
-  return (
-    <Paper
-      sx={{
-        position: 'relative',
-        backgroundColor: 'grey.800',
-        color: '#fff',
-        mb: 4,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundImage: `url(${job.image})`,
-      }}
-    >
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={job.image} alt={job.imageText} />}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          right: 0,
-          left: 0,
-          backgroundColor: 'rgba(0,0,0,.3)',
-        }}
-      />
-      <Grid container>
-        <Grid item md={6}>
-          <Box
-            sx={{
-              position: 'relative',
-              p: { xs: 3, md: 6 },
-              pr: { md: 0 },
-            }}
-          >
-            <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-              {job.title}
-            </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
-              {job.description}
-            </Typography>
-            <Typography variant="body1" color="inherit" gutterBottom>
-              Requirements: {job.requirements}
-            </Typography>
-            <Typography variant="body1" color="inherit" gutterBottom>
-              Deadline: {job.deadline}
-            </Typography>
-            <Button variant="contained" onClick={handleApplyNow}>Apply Now</Button>
-          </Box>
-        </Grid>
-      </Grid>
-    </Paper>
-  );
-};
+const Job = mongoose.model("Job", JobSchema);
 
-Job.propTypes = {
-  job: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    imageText: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    companyWebsite: PropTypes.string.isRequired,
-    requirements: PropTypes.string.isRequired,
-    deadline: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-export default Job;
+module.exports = Job;
