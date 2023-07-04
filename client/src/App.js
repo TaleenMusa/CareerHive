@@ -12,7 +12,6 @@ import { useState } from 'react';
 import Admin from './views/Admin/SuperAdmin';
 function App() {
   const [user, setUser] = useState(null);
-  const userId = localStorage.getItem('user');
   useEffect(() => {
       axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
         .then(res => {
@@ -21,38 +20,39 @@ function App() {
         .catch(err => console.log(err))
     
   }, [])
-  const [location, setLocation] = useState('');
   useEffect(() => {
     localStorage.setItem('user', user?._id)
   }, [user])
-  const addLocation = (e) => {
-    e.preventDefault();
-    axios.post("http://localhost:8000/api/locations", {location:location})
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-  } 
+
+  const [mood, setMood] = useState({ color: "#45505b", backgroundColor: "#f2f3f5" });
+  const [dark , setDark] = useState(false);
+  const [style, setStyle] = useState({
+    backgroundColor: 'rgb(32, 33, 36)',
+    color: 'white',
+  });
+
+  useEffect(() => {
+    if (dark) {
+      setStyle({ backgroundColor: 'rgb(32, 33, 36)', color: 'white' });
+    } else {
+      setStyle({ backgroundColor: 'white', color: 'black' });
+    }
+  }, [dark]);
 
 
   return (
     <div className="App">
-
-{/* <Info/> */}
-
-      {/* <form onSubmit={addLocation}>
-        <input type="text" onChange={(e) => setLocation(e.target.value)} />
-        <input type="submit"  />
-      </form> */}
-      <NavBar user={user} setUser={setUser}/>
+      <NavBar user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>
 
       
       <Routes>
-        <Route exact path="/" element={<Home  user={user}/>} />
-        <Route exact path="/add" element={<Form user={user}/>} />
+        <Route exact path="/" element={<Home  user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
+        <Route exact path="/add" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
 
-        <Route path="/logReg" element={<LogReg />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/info/:id" element={<Info />} />
-        <Route path="/admin" element= {<Admin user={Admin}/>}/>
+        <Route path="/logReg" element={<LogReg user={user} setUser={setUser}  mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
+        <Route path="/dashboard" element={<Dashboard mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
+        <Route path="/info/:id" element={<Info mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
+        <Route path="/admin" element= {<Admin user={Admin} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>}/>
       </Routes>
     </div>
   );

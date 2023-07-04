@@ -2,10 +2,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './JobList.css';
 
     const JobList = (props) => {
         const navigate = useNavigate();
         const {user,jobData} = props
+        const {dark} = props
 
 
 const options = {
@@ -23,7 +25,6 @@ const options = {
     const thStyle = {
         border: '1px solid #ccc',
         padding: '8px',
-        backgroundColor: '#f2f2f2',
         textAlign: 'left',
     };
 
@@ -33,16 +34,14 @@ const options = {
     };
 
     const evenRowStyle = {
-        backgroundColor: '#f9f9f9',
     };
 
     const hoverRowStyle = {
-        backgroundColor: '#e9e9e9',
     };
 
     return (
         <div style={{ marginTop: '1rem' }}>
-        <table style={tableStyle}>
+        <table style={tableStyle} className={`table table-striped ${!dark? ' table-dark':''}`}>
             <thead>
             <tr>
                 <th style={thStyle}>Title</th>
@@ -57,20 +56,13 @@ const options = {
             {jobData.map((job, index) => (
                 <tr
                 key={job.id}
-                style={index % 2 === 0 ? evenRowStyle : {}}
-                onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = hoverRowStyle.backgroundColor;
-                }}
-                onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = evenRowStyle.backgroundColor;
-                }}
                 >
                 <td onClick={()=>{navigate(`/info/${job._id}`)}} style={tdStyle}>{job.title}</td>
                 <td style={tdStyle}>{job.company}</td>
                 
 
-                {job.location ? <td onClick={()=>{navigate(`/city/${job.location._id}`)}}  style={tdStyle}>{job.location.location}</td> : <td style={tdStyle}>No Location</td>}
-                {job.category ? <td onClick={()=>{navigate(`/category/${job.category._id}`)}}  style={tdStyle}>{job.category.Category}</td> : <td style={tdStyle}>No Category</td>}
+                {job.location ? <td   style={tdStyle}>{job.location.location}</td> : <td style={tdStyle}>No Location</td>}
+                {job.category ? <td  style={tdStyle}>{job.category.Category}</td> : <td style={tdStyle}>No Category</td>}
                 <td style={tdStyle}>{job.createdAt ? new Date(job.createdAt).toLocaleDateString('en-GB', options) : ''}</td>
                 <td style={tdStyle}>{job.deadline ? new Date(job.deadline).toLocaleDateString('en-GB', options) : ''}</td>
                 </tr>

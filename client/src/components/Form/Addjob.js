@@ -105,15 +105,18 @@ import { useNavigate } from 'react-router-dom'
             onChange={(e) => setJobTitle(e.target.value)}
             />
         </div>
-
         <div>
             <label htmlFor="requirements">Requirements:</label>
-            <textarea
+            <input
+            type="text"
             id="requirements"
             value={requirements}
             onChange={(e) => setRequirements(e.target.value)}
             />
+            
         </div>
+
+
         <div>
             <label htmlFor="jobDescription">Job Description:</label>
             <textarea

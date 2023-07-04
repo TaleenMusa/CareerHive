@@ -59,10 +59,6 @@ const Registration = () => {
       newErrors.Email = 'Email is invalid';
     }
 
-    if (!formInfo.Company) {
-      formIsValid = false;
-      newErrors.Company = 'Company is required';
-    }
 
     if (!formInfo.Bday) {
       formIsValid = false;
@@ -168,20 +164,7 @@ const Registration = () => {
                 />
                 {errors.Email && <FormHelperText error>{errors.Email}</FormHelperText>}
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="company"
-                  label="Company"
-                  name="Company"
-                  autoComplete="organization"
-                  value={formInfo.Company}
-                  onChange={changeHandler}
-                  error={Boolean(errors.Company)}
-                />
-                {errors.Company && <FormHelperText error>{errors.Company}</FormHelperText>}
-              </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -232,8 +215,8 @@ const Registration = () => {
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
+                  label="I agree to the terms and conditions"
+                /> 
               </Grid>
             </Grid>
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
