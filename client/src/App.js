@@ -35,11 +35,17 @@ function App() {
 
   return (
     <div className="App">
+
+<NavBar/>
+
+{/* <Info/> */}
+
       <form onSubmit={addLocation}>
         <input type="text" onChange={(e) => setLocation(e.target.value)} />
         <input type="submit"  />
       </form>
       <NavBar user={user} setUser={setUser}/>
+
       
       <Routes>
         <Route path="/" element={<Home  user={user}/>} />
