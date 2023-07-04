@@ -1,4 +1,4 @@
-    import React, { useState } from 'react';
+    import React, { useEffect, useState } from 'react';
     import Select from 'react-select';
     import DatePicker from 'react-datepicker';
     import 'react-datepicker/dist/react-datepicker.css';
@@ -6,8 +6,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
     
     const AddJob = (props) => {
+
         const navigate = useNavigate()
-        
+        if(!props.user){
+            navigate("/logReg")
+        }
+    const [locations, setLocations] = useState([])
     const {user} = props
     console.log(user)
     const [companyName, setCompanyName] = useState('');
@@ -18,11 +22,19 @@ import { useNavigate } from 'react-router-dom'
     const [jobDescription, setJobDescription] = useState('');
     const [area, setArea] = useState('');
     const [deadline, setDeadline] = useState(null);
-
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/locations")
+            .then(res => {
+                console.log(res.data)
+                setLocations(res.data.results)
+            })
+            .catch(err => console.log(err))
+    }, [])
     const handleSubmit = (e) => {
         
         e.preventDefault();
         console.log("submitting")
+        console.log(area)
         axios.post("http://localhost:8000/api/jobs", {
             companyName,
             companyLogo,
@@ -32,7 +44,8 @@ import { useNavigate } from 'react-router-dom'
             jobDescription,
             area,
             deadline,
-            userId: user._id
+            userId: user._id,
+            locationId: area.value
         }, {withCredentials: true})
         .then(res =>{
             console.log(res)
@@ -99,15 +112,15 @@ import { useNavigate } from 'react-router-dom'
         <div>
             <label htmlFor="area">Area:</label>
             <Select
-            id="area"
-            value={area}
-            onChange={(selectedOption) => setArea(selectedOption)}
-            options={[
-                { value: 'area1', label: 'Area 1' },
-                { value: 'area2', label: 'Area 2' },
-                { value: 'area3', label: 'Area 3' },
-            ]}
-            />
+                    id="area"
+                    value={area}
+                    onChange={(selectedOption) => {
+                        setArea(selectedOption)
+                    }}
+                    options={locations.map((location) => {
+                        return { value: location._id, label: location.location };
+                    })}
+                />
         </div>
         <div>
             <label htmlFor="deadline">Deadline:</label>

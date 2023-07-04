@@ -11,6 +11,8 @@ app.use(cors({
 }));
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true })); // for parsing URL-encoded bodies
+
 app.use(cookies());
 
 
