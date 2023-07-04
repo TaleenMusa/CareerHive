@@ -8,8 +8,9 @@ import Home from './views/Home/Home';
 function App() {
   return (
     <div className="App">
+<NavBar/>
 
-<Info/>
+{/* <Info/> */}
       
       <Routes>
 

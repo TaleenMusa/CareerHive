@@ -12,7 +12,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const NavBar = () => {
   const menuItems = [
     { label: 'Home', path: '/' },
-    { label: 'Add job', path: '/add-job' },
+    { label: 'Add job', path: '/Add' },
     { label: 'My job', path: '/my-job' },
   ];
 
