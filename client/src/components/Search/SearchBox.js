@@ -1,8 +1,9 @@
     import React from 'react';
     import { Link } from 'react-router-dom';
     import Select from 'react-select';
+    import './SearchBox.css';
 
-    const Navbar = () => {
+    const SearchBox = () => {
     const categories = [
         { value: 'category1', label: 'Category 1' },
         { value: 'category2', label: 'Category 2' },
@@ -20,22 +21,19 @@
     };
 
     return (
-        <nav>
-        <div>
-            <Link to="/">Logo</Link>
-        </div>
+        <nav className="searchbox-container">
         <div>
             <form onSubmit={handleSearch}>
-            <input type="text" placeholder="Search" />
-            <button type="submit">Search</button>
+            <input type="text" placeholder="Search" className="search-input" />
+            <button type="submit" className="search-button">Search</button>
             </form>
         </div>
-        <div>
-            <Select options={categories} placeholder="Select Category" />
-            <Select options={areas} placeholder="Select Area" />
+        <div className="select-container">
+            <Select options={categories} placeholder="Select Category" className="select-category" />
+            <Select options={areas} placeholder="Select Area" className="select-area" />
         </div>
         </nav>
     );
     };
 
-    export default Navbar;
+    export default SearchBox;

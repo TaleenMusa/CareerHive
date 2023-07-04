@@ -7,8 +7,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const NavBar = () => {
@@ -33,17 +31,6 @@ const NavBar = () => {
                 {item.label}
               </Button>
             ))}
-          </Box>
-
-          <Box className="search-box">
-            <TextField
-              placeholder="Search"
-              variant="outlined"
-              size="small"
-              InputProps={{
-                startAdornment: <SearchIcon className="search-icon" />,
-              }}
-            />
           </Box>
 
           <Box className="user-menu">
