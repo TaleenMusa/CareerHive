@@ -24,11 +24,8 @@ const Job = (props) => {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url(${job.image})`,
       }}
     >
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={job.image} alt={job.imageText} />}
       <Box
         sx={{
           position: 'absolute',
@@ -41,7 +38,7 @@ const Job = (props) => {
         }}
       />
       <Grid container>
-      <Grid item md={6}>
+      <Grid item md={12}>
   <Box
     sx={{
       position: 'relative',
@@ -57,7 +54,18 @@ const Job = (props) => {
       {job.description}
     </Typography>
     <Typography variant="body1" color="inherit" gutterBottom>
-      Requirements: {job.requirements}
+      <h5>Requirements: </h5>
+      <ul>
+      {job.requirements.map((requirement) => (
+        <li>
+                  <Typography variant="body1" color="inherit" gutterBottom>
+          {requirement}
+        </Typography>
+        </li>
+      )
+      )}
+      </ul>
+
     </Typography>
     <Typography variant="body1" color="inherit" gutterBottom>
       Deadline: {job.deadline}

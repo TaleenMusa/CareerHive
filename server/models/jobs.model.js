@@ -43,6 +43,16 @@ const JobSchema = new mongoose.Schema({
         ref: 'Category',
         required: true
     },
+    status: {
+        type: String,
+        enum: ["approved", "declined","pending"],
+        default: "pending"
+    },
+    company: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
+        required: true
+    }
 
 }, { timestamps: true });
 

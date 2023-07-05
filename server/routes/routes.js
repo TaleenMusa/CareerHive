@@ -20,4 +20,7 @@ module.exports = app=>{
     app.post("/api/category",Categories.create)
     app.get("/api/category", Categories.index)
     app.delete("/api/jobs/:id", Jobs.deleteJob)
+    app.put("/api/jobs/:id", Jobs.updateJob)
+    app.post('/api/:userId/company', Users.setCompany)
+    app.get('/api/company/:id', Users.getCompany)
 }

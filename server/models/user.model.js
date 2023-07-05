@@ -33,7 +33,13 @@ const UserSchema = new mongoose.Schema({
             message: "Age must be over 18"
         }
     },
-    jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }]
+    company: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' },
+    jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }],
+    role: {
+        type: String,
+        enum: ["admin", "user"],
+        default: "user"
+    }
 
 
   }, {timestamps: true});

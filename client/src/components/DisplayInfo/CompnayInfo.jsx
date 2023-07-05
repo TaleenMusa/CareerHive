@@ -6,16 +6,17 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
 const CompanyInfo = (props) => {
-  const { logo, name, social = [] } = props;
-
+  const {companyData}  = props;
+  const {logo, name, social} = companyData;
+  console.log(companyData);
   return (
-    <Grid item xs={12} md={4}>
-      <Paper elevation={0} sx={{ p: 2, bgcolor: 'grey.200' }}>
+    <Grid  item xs={12} md={6}>
+      <Paper elevation={3} sx={{ p: 4, bgcolor: 'grey.200' }}>
         <img src={logo}  style={{ width: '100%', marginBottom: '1rem' }} />
         <Typography variant="h6" gutterBottom>
           {name}
         </Typography>
-      </Paper>
+
       <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
         Social
       </Typography>
@@ -23,13 +24,14 @@ const CompanyInfo = (props) => {
         <Link
           display="block"
           variant="body1"
-          href={network.url}
-          key={network.name}
+          href={network}
+          key={network}
           sx={{ mb: 0.5 }}
         >
-          {network.name}
+          {network}
         </Link>
       ))}
+            </Paper>
     </Grid>
   );
 };

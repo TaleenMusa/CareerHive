@@ -82,6 +82,7 @@
         deadline,
         userId: user._id,
         locationId: area.value,
+        companyId: user.company,
         });
 
         axios
@@ -96,6 +97,7 @@
             deadline,
             userId: user._id,
             locationId: area.value,
+            companyId: user.company,
             },
             { withCredentials: true }
         )

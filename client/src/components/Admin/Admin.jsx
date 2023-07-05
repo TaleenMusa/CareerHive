@@ -1,9 +1,10 @@
+import axios from 'axios';
 import React from 'react';
 
 const Admin = (props) => {
   const { jobData } = props;
   const { mood } = props;
-
+  console.log(jobData);
   const tableStyle = {
     borderCollapse: 'collapse',
     width: '100%',
@@ -32,11 +33,31 @@ const Admin = (props) => {
   const handleAccept = (jobId) => {
     // Implement the logic for accepting a job with the given jobId
     console.log(`Accept job with ID ${jobId}`);
+    axios
+    .put(`http://localhost:8000/api/jobs/${jobId}`, {status: "approved"})
+    .then((res) => {
+        console.log(res.data);
+    }
+    )
+    .catch((err) => {
+        console.log(err);
+    }
+    );
   };
 
   const handleDecline = (jobId) => {
     // Implement the logic for declining a job with the given jobId
     console.log(`Decline job with ID ${jobId}`);
+    axios
+    .put(`http://localhost:8000/api/jobs/${jobId}`, {status: "declined"})
+    .then((res) => {
+        console.log(res.data);
+    }
+    )
+    .catch((err) => {
+        console.log(err);
+    }
+    );
   };
 
   return (
@@ -55,26 +76,18 @@ const Admin = (props) => {
             </tr>
           </thead>
           <tbody>
-            {jobData.map((job, index) => (
+          {jobData.map((job, index) => (
               <tr
-                key={job.id}
-                style={index % 2 === 0 ? evenRowStyle : {}}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = hoverRowStyle.backgroundColor;
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = evenRowStyle.backgroundColor;
-                }}
+                key={job._id}
               >
                 <td style={tdStyle}>{job.title}</td>
-                <td style={tdStyle}>{job.category}</td>
-                <td style={tdStyle}>{job.location}</td>
+                <td style={tdStyle}>{job.category.Category}</td>
+                <td style={tdStyle}>{job.location.location}</td>
                 <td style={tdStyle}>{job.createdAt}</td>
                 <td style={tdStyle}>{job.deadline}</td>
                 <td style={tdStyle}>
-                  {/* Add accept/decline options as needed */}
-                  <button onClick={() => handleAccept(job.id)}>Accept</button>
-                  <button onClick={() => handleDecline(job.id)}>Decline</button>
+                <button onClick={() => handleAccept(job._id)}>Accept</button>
+                <button onClick={() => handleDecline(job._id)}>Decline</button>
                 </td>
               </tr>
             ))}

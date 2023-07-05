@@ -8,6 +8,7 @@ import './Home.css'
 const Home = (props) => {
   const {mood, setMood} = props
   const {dark, setDark} = props
+  const {filterCompany}=props
   console.log("Home")
   console.log(props.user)
   const {user} = props
@@ -17,7 +18,7 @@ const Home = (props) => {
           
 
     <h3 className='alljobs'>All Jobs:</h3>
-    <JobList jobData={jobData} user={user} dark={dark}/>
+    <JobList filterCompany={filterCompany} jobData={jobData} user={user} dark={dark}/>
   </div>
   )
 }
