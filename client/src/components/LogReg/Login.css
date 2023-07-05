@@ -16,15 +16,14 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
-  
-  .btn-primary {
+  .btn-primary-main {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-    color: #fff;
-    background-color: #007bff;
+    color: #e5db35;
+    background-color: #e5db35;
     border: none;
     border-radius: 4px;
     cursor: pointer;

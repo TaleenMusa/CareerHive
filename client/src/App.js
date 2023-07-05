@@ -11,6 +11,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import Admin from './views/Admin/SuperAdmin';
 import MyJobs from './views/MyJobs';
+import CompanyCard from './components/CompanyCard/CompnayCard';
 function App() {
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -55,6 +56,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
         <Route path="/info/:id" element={<Info mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
         <Route path="/admin" element= {<Admin user={Admin} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>}/>
+        <Route path="/companycard" element={<CompanyCard  mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
       </Routes>
     </div>
   );

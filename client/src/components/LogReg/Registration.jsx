@@ -15,7 +15,11 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  palette: {
+    primary: {main: '#e5db35',},
+  },
+});
 
 const Registration = () => {
   const [formInfo, setFormInfo] = useState({
@@ -112,7 +116,7 @@ const Registration = () => {
             alignItems: 'center',
           }}
         >
-          <LockOutlinedIcon sx={{ m: 1, bgcolor: 'secondary.main' }} />
+          <LockOutlinedIcon sx={{ m: 1, bgcolor: 'primary.main' }} />
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -219,7 +223,7 @@ const Registration = () => {
                 /> 
               </Grid>
             </Grid>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,bgcolor: 'primary.main'}}>
               Sign Up
             </Button>
           </Box>

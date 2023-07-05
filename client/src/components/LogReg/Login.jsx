@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,11 +17,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { sizing } from '@mui/system';
+import { yellow } from '@mui/material/colors';
 const Login = (props) => {
   const { user, setUser } = props;
   const { handleSubmit, register, formState: { errors } } = useForm();
   const [errormsg, seterrormsg] = useState(null);
   const navigate = useNavigate();
+
 
   if (user) {
     navigate('/');
@@ -46,37 +48,43 @@ const Login = (props) => {
       .catch((err) => console.log(err));
   };
 
-  const theme = createTheme();
+  const theme = createTheme({
+    palette: {
+      primary: {main: '#e5db35'},
+      secondary:{main:'#00e5ff'}
+    },
+  });
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} sx={{bgcolor:'secondary.main'}}>
       <Container component="main" maxWidth="xl">
         <CssBaseline />
         <Box
           sx={{
+            
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor:'primary.main'}}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit(login)} noValidate sx={{ mt: 3, marginTop: 8,display: 'flex',flexDirection: 'column',
+          <Box component="form"  onSubmit={handleSubmit(login)} noValidate sx={{ width:'60%',mt: 3, marginTop: 8,display: 'flex',flexDirection: 'column',
             
             alignItems: 'center'}}>
-              <Grid item xl={12}>
+            
             <TextField
-              
               required
               fullWidth
               id="email"
               label="Email Address"
               name="email"
+              type='text'
               autoComplete="email"
               autoFocus
               {...register('Email', {
@@ -89,7 +97,7 @@ const Login = (props) => {
               error={Boolean(errors.email)}
               helperText={errors.email?.message}
             />
-            </Grid>
+            
             <TextField
               margin="normal"
               required
@@ -104,9 +112,15 @@ const Login = (props) => {
               helperText={errors.password?.message}
             />
 
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Sign In
-            </Button>
+<Button
+  
+  type="submit"
+  fullWidth
+  variant="contained"
+  sx={{ mt: 3, mb: 2}}
+>
+  Sign In
+</Button>
 
           </Box>
         </Box>

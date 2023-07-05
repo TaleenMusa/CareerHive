@@ -48,7 +48,7 @@ const NavBar = (props) => {
   const menuItems = [
     { label: 'Home', path: '/' },
     { label: 'Add job', path: '/add' },
-    { label: 'My job', path: `/my-job/${user._id}` },
+    { label: 'My job', path: `/my-job/${user?._id}` },
   ];
   const logout = () => {
     localStorage.removeItem('user');
