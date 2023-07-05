@@ -11,7 +11,7 @@ The development of CareerHive was a collaborative effort by the following team m
  
  •	 Taleen Khoury https://github.com/TaleenMusa
  
- •	 Saleeba Bassir - Saleeba-Bassir (github.com)
+ •	 Saleeba Bassir - [Saleeba-Bassir (github.com)](https://github.com/Saleeba-Bassir)
  
 
   ## ERD Diagram
@@ -20,23 +20,29 @@ The development of CareerHive was a collaborative effort by the following team m
 
 ### Website pages
 
-1- View the list of jobs available 
+1- View the list of jobs available (Home page)
 
 <img src="https://github.com/TaleenMusa/CareerHive/assets/126386351/224520ef-bdd5-4735-95cd-e0d96768a7cc.png" >
 
 2- Check full job information form the details page
 
+<img src="https://github.com/TaleenMusa/CareerHive/assets/126386351/b2b8616e-91ad-4143-9f40-0d6e3a5764fa.png" >
+
 3- Add jobs from the form page
 
 <img src="https://github.com/TaleenMusa/CareerHive/assets/126386351/aa0643c7-d60b-4eb6-aa0e-3493f2ecde25.png" >
 
-4- Admin page 
+4- Pending list &  Admin page 
+
+<img src="https://github.com/TaleenMusa/CareerHive/assets/126386351/4431b76b-d2c4-424c-924b-052889689bf4.png" >
 
 5- Company form
 
 <img src="https://github.com/TaleenMusa/CareerHive/assets/126386351/a0cffd4b-7c65-4eec-80fa-0757ab521425.png" >
 
-6- Pending list
+6- login and registration
+
+<img src="https://github.com/TaleenMusa/CareerHive/assets/126386351/986e5471-f80b-4e63-8ab1-b0a9131cca0e.png" >
 
 
 ## Technologies Used:
