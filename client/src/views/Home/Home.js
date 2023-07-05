@@ -16,7 +16,7 @@ const Home = (props) => {
     <div style={mood}>
           
 
-    <h3 className='my-3  text-center'>All Jobs:</h3>
+    <h3 className='alljobs'>All Jobs:</h3>
     <JobList jobData={jobData} user={user} dark={dark}/>
   </div>
   )
