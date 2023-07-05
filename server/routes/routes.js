@@ -10,6 +10,7 @@ module.exports = app=>{
     app.post("/api/login", Users.login)
     app.get("/api/users/loggedin",authenticate, Users.getLoggedInUser)
     app.get("/api/users/logout", Users.logout)
+    app.get("/api/user/:userId/jobs", Users.Jobs)
     app.post("/api/jobs", Jobs.create)
     app.get("/api/jobs", Jobs.allJobs)
     app.get("/api/jobs/:id", Jobs.getJobwithuser)

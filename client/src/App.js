@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import Admin from './views/Admin/SuperAdmin';
+import MyJobs from './views/MyJobs';
 function App() {
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -48,7 +49,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home  user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
         <Route exact path="/add" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
-
+        <Route exact path="/edit/:id" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
+        <Route exact path="/my-job/:userId" element={<MyJobs user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
         <Route path="/logReg" element={<LogReg user={user} setUser={setUser}  mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
         <Route path="/dashboard" element={<Dashboard mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
         <Route path="/info/:id" element={<Info mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />

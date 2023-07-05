@@ -55,6 +55,13 @@ class UserController {
             maxAge: 0
         }).json({msg:"ok"})
     }
+    Jobs(req,res){
+        console.log({_id: req.params.userId})
+        User.findOne({_id: req.params.userId})
+            .populate("jobs", "title description location category deadline createdAt ") 
+            .then(user=> res.json(user.jobs))
+            .catch(err=> res.json(err))
+    }
 
 }
 
