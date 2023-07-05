@@ -56,10 +56,13 @@ class UserController {
         }).json({msg:"ok"})
     }
     Jobs(req,res){
-        console.log({_id: req.params.userId})
+        console.log(req.params.userId)
         User.findOne({_id: req.params.userId})
-            .populate("jobs", "title description location category deadline createdAt ") 
-            .then(user=> res.json(user.jobs))
+            .populate("jobs", "title description location category ") 
+            .then(user=> {
+                console.log(user)
+                res.json(user.jobs)
+            })
             .catch(err=> res.json(err))
     }
 

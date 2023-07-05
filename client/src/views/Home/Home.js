@@ -11,21 +11,10 @@ const Home = (props) => {
   console.log("Home")
   console.log(props.user)
   const {user} = props
-  const [jobData, setJobData] = useState([]);
-  useEffect(() => {
-      axios
-          .get('http://localhost:8000/api/jobs')
-          .then((res) => {
-              console.log(res.data);
-              setJobData(res.data);
-          })
-          .catch((err) => {
-              console.log(err);
-          });
-  }, []);
+  const {jobData, setJobData} = props;
   return (
     <div style={mood}>
-          <SearchBox />
+          
 
     <h3 className='my-3  text-center'>All Jobs:</h3>
     <JobList jobData={jobData} user={user} dark={dark}/>

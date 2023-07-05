@@ -2,7 +2,6 @@ nav {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border: 1px solid #ccc;
   padding: 1rem;
 
 }
@@ -47,7 +46,6 @@ button[type="submit"]:hover {
   align-items: center;
   width: 75px;
   height: 40px;
-  border: 1px solid #ccc;
   border-radius: 15px;
   overflow: hidden;
   transition: width 0.75s ease;

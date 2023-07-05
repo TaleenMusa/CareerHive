@@ -4,6 +4,7 @@ import './CompanyCard.css'
 
 const CompanyCard = (props) => {
   const { comp } = props;
+  const {mood} = props;
   const navigate = useNavigate();
 
   const [companyName, setCompanyName] = useState('');
@@ -46,8 +47,8 @@ const CompanyCard = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="company-card-form" style={comp}>
-      <div className="box1">
+    <form onSubmit={handleSubmit} className="company-card-form" style={mood}>
+      <div className="box1"  style={mood}> 
         <label htmlFor="companyName">Company Name:</label>
         <input
           type="text"

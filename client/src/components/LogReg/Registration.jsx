@@ -22,6 +22,8 @@ const defaultTheme = createTheme({
 });
 
 const Registration = () => {
+  const [agreed, setAgreed] = useState(false);
+
   const [formInfo, setFormInfo] = useState({
     Fname: '',
     Lname: '',
@@ -104,6 +106,7 @@ const Registration = () => {
         });
     }
   };
+  const[isactive,setisactive]=useState(false)
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -174,8 +177,10 @@ const Registration = () => {
                   required
                   fullWidth
                   name="Bday"
+                  onFocus={()=>setisactive(true)}
+                  onBlur={()=>setisactive(false)}
                   label="Birthday"
-                  type="date"
+                  type={isactive ? 'date' : 'text'}
                   id="birthday"
                   InputProps={{
                     placeholder: '',
@@ -218,12 +223,14 @@ const Registration = () => {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  control={<Checkbox value={agreed}
+                  onChange={(e) => setAgreed(e.target.checked)}
+                  color="primary" />}
                   label="I agree to the terms and conditions"
                 /> 
               </Grid>
             </Grid>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,bgcolor: 'primary.main'}}>
+            <Button disabled={!agreed} type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,bgcolor: 'primary.main'}}>
               Sign Up
             </Button>
           </Box>

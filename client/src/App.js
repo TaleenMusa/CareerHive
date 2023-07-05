@@ -12,22 +12,24 @@ import { useState } from 'react';
 import Admin from './views/Admin/SuperAdmin';
 import MyJobs from './views/MyJobs';
 import CompanyCard from './components/CompanyCard/CompnayCard';
+import SearchBox from './components/Search/SearchBox';
 function App() {
   const [user, setUser] = useState(null);
   useEffect(() => {
-      axios.get("http://localhost:8000/api/users/loggedin", {withCredentials: true})
-        .then(res => {
-          setUser(res.data.user)
-        })
-        .catch(err => console.log(err))
-    
+    axios.get("http://localhost:8000/api/users/loggedin", { withCredentials: true })
+      .then(res => {
+        console.log(res.data.user)
+        setUser(res.data.user)
+      })
+      .catch(err => console.log(err))
+
   }, [])
   useEffect(() => {
     localStorage.setItem('user', user?._id)
   }, [user])
 
   const [mood, setMood] = useState({ color: "#45505b", backgroundColor: "#f2f3f5" });
-  const [dark , setDark] = useState(false);
+  const [dark, setDark] = useState(false);
   const [style, setStyle] = useState({
     backgroundColor: 'rgb(32, 33, 36)',
     color: 'white',
@@ -40,23 +42,92 @@ function App() {
       setStyle({ backgroundColor: 'white', color: 'black' });
     }
   }, [dark]);
+  const [locations, setLocations] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/locations")
+      .then((res) => {
+        console.log(res.data.results);
+        setLocations(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/category")
+      .then((res) => {
+        console.log(res.data);
+        setCategories(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const [jobData, setJobData] = useState([]);
+  const [allJobData, setAllJobData] = useState([]);
+  useEffect(() => {
+      axios
+          .get('http://localhost:8000/api/jobs')
+          .then((res) => {
+              console.log(res.data);
+              setJobData(res.data);
+              setAllJobData(res.data);
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+  }, []);
+
 
 
   return (
     <div className="App" style={mood}>
-      <NavBar user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>
+      <NavBar user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />
 
-      
+
       <Routes>
-        <Route exact path="/" element={<Home  user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
-        <Route exact path="/add" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
-        <Route exact path="/edit/:id" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
-        <Route exact path="/my-job/:userId" element={<MyJobs user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
-        <Route path="/logReg" element={<LogReg user={user} setUser={setUser}  mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
-        <Route path="/dashboard" element={<Dashboard mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
-        <Route path="/info/:id" element={<Info mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
-        <Route path="/admin" element= {<Admin user={Admin} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>}/>
-        <Route path="/companycard" element={<CompanyCard  mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>} />
+        <Route exact path="/" element={
+          <>
+            <SearchBox  allJobData={allJobData}  setJobData={setJobData} locations={locations} categories={categories} />
+            <Home jobData={jobData} user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />
+          </>
+
+        } />
+        <Route exact path="/add" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+        {
+          user ?
+            <>
+              <Route exact path="/edit/:id" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+              <Route path="/companycard" element={<CompanyCard mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+              <Route exact path="/my-job/:userId" element={
+              <>
+              <SearchBox locations={locations} categories={categories} />
+              <MyJobs user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />
+              </>
+              } />
+              <Route path="/admin/*" element={
+              <>
+              <SearchBox locations={locations} categories={categories} />
+              <Admin user={Admin} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />
+              </>
+              } />
+              <Route path="/companycard" element={<CompanyCard mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+            </>
+            : <>
+              <Route exact path="/edit/:id" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+              <Route path="/companycard" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+              <Route exact path="/my-job/:userId" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+              <Route path="/admin/*" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+              <Route path="/companycard" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+
+            </>
+        }
+        <Route path="/logReg" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+        <Route path="/dashboard" element={<Dashboard mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+        <Route path="/info/:id" element={<Info mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
       </Routes>
     </div>
   );

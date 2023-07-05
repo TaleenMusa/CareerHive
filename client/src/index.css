@@ -7,3 +7,27 @@ font-weight: 550;
 html,body{
     min-height: 100vh;
 }
+#root > div > div > div:nth-child(2) > main > div > form > button:hover{
+    background-color: #e5db35!important;
+}
+#root > div > div > div:nth-child(1) > main > div > form > button:hover{
+    background-color: #e5db35!important;
+}
+#root > div > div > nav > div > button:hover{
+    background-color: #e5db35!important;
+}
+#root > div > div > form > button:hover{
+    background-color: #e5db35!important;
+}
+#root > div > nav > div > button:hover{
+    background-color: #e5db35!important;
+}
+
+#root > div > nav > div > div.select-category.css-b62m3t-container{
+    min-width: 60px;
+}
+
+#birthday{
+    
+}
+

@@ -2,6 +2,7 @@ import React from 'react';
 
 const Admin = (props) => {
   const { jobData } = props;
+  const { mood } = props;
 
   const tableStyle = {
     borderCollapse: 'collapse',
@@ -39,7 +40,7 @@ const Admin = (props) => {
   };
 
   return (
-    <div>
+    <div style={mood}>
       <div style={{ marginTop: '1rem' }}>
         <h3>Pending jobs</h3>
         <table style={tableStyle}>

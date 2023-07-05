@@ -2,7 +2,7 @@ const Users = require("../controllers/user.controller");
 const Jobs = require("../controllers/jobs.controller");
 const Locations = require("../controllers/locations.controller");
 const Categories = require("../controllers/category.controller");
-const {authenticate } = require("../config/jwt.config");
+const {authenticate,authenticateAdmin,authenticateOwner } = require("../config/jwt.config");
 
 
 module.exports = app=>{
@@ -19,7 +19,5 @@ module.exports = app=>{
     app.get("/api/locations", Locations.index)
     app.post("/api/category",Categories.create)
     app.get("/api/category", Categories.index)
-    
-
-
+    app.delete("/api/jobs/:id", Jobs.deleteJob)
 }

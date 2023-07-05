@@ -15,6 +15,13 @@ const JobSchema = new mongoose.Schema({
     deadline: {
         type: Date,
         required: [true, "Date is required"],
+        validate: {
+            validator: function (value) {
+              // Compare the deadline date with the current date
+              return value > new Date();
+            },
+            message: "Deadline must be in the future"
+          }
     },
     requirements: {
         type: [String],

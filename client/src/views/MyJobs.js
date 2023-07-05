@@ -6,10 +6,11 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Userlist from '../components/JobList/Userlist';
 const MyJobs = (props) => {
-  const {mood, setMood} = props
-  const {dark, setDark} = props
+  const {mood, dark} = props
   const {userId} = useParams();
+  const [loadded, setLoaded] = useState(false);
   console.log("Home")
   console.log(props.user)
   const {user} = props
@@ -20,17 +21,23 @@ const MyJobs = (props) => {
           .then((res) => {
               console.log(res.data);
               setJobData(res.data);
+              setLoaded(true);
           })
           .catch((err) => {
               console.log(err);
           });
   }, []);
+  
   return (
     <div style={mood}>
-          <SearchBox />
 
     <h3 className='my-3  text-center'>All Jobs:</h3>
-    <JobList jobData={jobData} user={user} dark={dark}/>
+    {
+      loadded?
+      <Userlist jobData={jobData} user={user} dark={dark} setJobData={setJobData}/>
+      :
+      'Loading...'
+    }
   </div>
   )
 }

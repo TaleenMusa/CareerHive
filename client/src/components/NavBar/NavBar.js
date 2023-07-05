@@ -93,7 +93,12 @@ const NavBar = (props) => {
       {isOpen && (
         <div className="dropdown-content">
           <Link >{user ? user.Fname +' ' +user.Lname:'Guest'}</Link>
-          <Link to='/company/info'>Company details</Link>
+          {
+            user?.role==='admin'?
+            <Link to='/admin/jobs'>Pending Jobs</Link>:
+            ''
+          }
+          <Link to='/companycard'>Company details</Link>
           <Link onClick={handleModeToggle} >Switch Mode</Link>
           {
             user?
