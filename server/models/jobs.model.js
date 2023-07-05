@@ -17,7 +17,7 @@ const JobSchema = new mongoose.Schema({
         required: [true, "Date is required"],
     },
     requirements: {
-        type: String,
+        type: [String],
         required: [true, "Requirements is required"],
         minlength: [2, "Requirements must be 2 characters or longer"]
     },
