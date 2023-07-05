@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import Avatar from '@mui/material/Avatar';
 const defaultTheme = createTheme({
   palette: {
     primary: {main: '#e5db35',},
@@ -119,7 +119,9 @@ const Registration = () => {
             alignItems: 'center',
           }}
         >
-          <LockOutlinedIcon sx={{ m: 1, bgcolor: 'primary.main' }} />
+           <Avatar sx={{ m: 1, bgcolor:'primary.main'}}>
+            <LockOutlinedIcon />
+          </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
