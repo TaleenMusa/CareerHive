@@ -14,10 +14,6 @@ The development of CareerHive was a collaborative effort by the following team m
  •	 Saleeba Bassir - Saleeba-Bassir (github.com)
  
 
-  ## Project Lead
-
-  •	 Fatima Harahsheh
-
   ## ERD Diagram
 
 <img src="https://github.com/TaleenMusa/CareerHive/assets/126386351/ce8eccbc-4af9-42f1-9fc6-97f743eaaf2f.png" width="400" height="400">
