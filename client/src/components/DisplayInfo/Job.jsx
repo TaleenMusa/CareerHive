@@ -36,7 +36,8 @@ const Job = (props) => {
           bottom: 0,
           right: 0,
           left: 0,
-          backgroundColor: 'rgba(0,0,0,.3)',
+          backgroundColor: '#e5db35',
+          color:'black',
         }}
       />
       <Grid container>
@@ -46,6 +47,7 @@ const Job = (props) => {
       position: 'relative',
       p: { xs: 3, md: 6 },
       pr: { md: 0 },
+      color:'black'
     }}
   >
     <Typography component="h1" variant="h3" color="inherit" gutterBottom>
