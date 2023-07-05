@@ -10,6 +10,7 @@
   .add-job-form label {
     font-weight: bold;
     margin-bottom: 0.5rem;
+    color: black;
   }
   
 
@@ -106,7 +107,7 @@
   }
   
   .add-job-form button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #e5dc35;
   }
 
 .box1{
