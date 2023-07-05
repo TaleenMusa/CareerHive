@@ -156,12 +156,12 @@ margin: 1rem;
     cursor: pointer;
     color: red;
     margin-left: 0.5rem;
+    
   }
   
   .add-job-form .add-requirement {
     display: flex;
     align-items: center;
-    
   }
   
   .add-job-form .add-requirement input[type="text"] {
