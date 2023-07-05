@@ -3,10 +3,11 @@
 import './Form.css'
     const Form = (props) => {
         const {user} = props
+        const {mood} = props
     return (
-        <div>
-        <h3 className='text'>Create a job:</h3>
-        <Addjob user={user}/>
+        <div style={mood}>
+        <h3 style={mood} className='text'>Create a job:</h3>
+        <Addjob mood={mood} user={user}/>
     </div>
     )
     }

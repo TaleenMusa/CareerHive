@@ -41,7 +41,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" style={mood}>
       <NavBar user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark}/>
 
       

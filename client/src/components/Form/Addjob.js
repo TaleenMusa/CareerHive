@@ -10,6 +10,7 @@
     import './Addjob.css';
 
     const AddJob = (props) => {
+        const { mood } = props;
     const navigate = useNavigate();
     if (!props.user) {
         navigate('/logReg');
@@ -106,7 +107,7 @@
     };
 
     return (
-        <form onSubmit={handleSubmit} className="add-job-form">
+        <form onSubmit={handleSubmit} className="add-job-form" style={mood}>
         <div className='box1' style={{ display: 'flex' }}> 
             <label htmlFor="jobTitle">Job Title:</label>
             <input
