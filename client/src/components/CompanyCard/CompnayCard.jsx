@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CompanyCard.css'
+import axios from 'axios';
 
 const CompanyCard = (props) => {
-  const { comp } = props;
+  const {user}  = props;
+  console.log(user);
   const {mood} = props;
   const navigate = useNavigate();
 
@@ -11,6 +13,38 @@ const CompanyCard = (props) => {
   const [companyLogo, setCompanyLogo] = useState('');
   const [socialAccounts, setSocialAccounts] = useState([]);
   const [newSocialAccount, setNewSocialAccount] = useState('');
+  useEffect(() => {
+    if (!user) {
+      navigate('/logreg');
+    }
+    if(user.company){
+      axios.get(`http://localhost:8000/api/company/${user.company}`).then((res) => {
+        console.log(res);
+        setCompanyName(res.data.name);
+        setCompanyLogo(res.data.logo);
+        setSocialAccounts(res.data.social);
+      }
+      ).catch((err) => console.log(err));
+
+    }
+
+  }, [user, navigate]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('submitting');
+    axios
+      .post(`http://localhost:8000/api/${user._id}/company`, {
+        name:companyName,
+        logo:companyLogo,
+        social:socialAccounts,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate('/');
+      })
+      .catch((err) => console.log(err));
+  };
+
 
   const handleSocialAccountChange = (e, index) => {
     const updatedSocialAccounts = [...socialAccounts];
@@ -32,19 +66,8 @@ const CompanyCard = (props) => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submitting');
-    console.log({
-      companyName,
-      companyLogo,
-      socialAccounts,
-    });
 
-    // Perform your desired actions with the company data
 
-    navigate('/');
-  };
 
   return (
     <form onSubmit={handleSubmit} className="company-card-form" style={mood}>

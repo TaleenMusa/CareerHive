@@ -73,13 +73,23 @@ function App() {
           .get('http://localhost:8000/api/jobs')
           .then((res) => {
               console.log(res.data);
-              setJobData(res.data);
-              setAllJobData(res.data);
+              const filter = res.data.filter((job) => job.status === "approved");
+              setJobData(filter);
+              setAllJobData(filter);
           })
           .catch((err) => {
               console.log(err);
           });
   }, []);
+  const filterCompany=(id)=> {
+    console.log(id);
+    const filter = allJobData.filter((job) => {
+      if(job.company){
+       return job.company._id === id
+      }
+    });
+    setJobData(filter);
+  }
 
 
 
@@ -92,16 +102,16 @@ function App() {
         <Route exact path="/" element={
           <>
             <SearchBox  allJobData={allJobData}  setJobData={setJobData} locations={locations} categories={categories} />
-            <Home jobData={jobData} user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />
+            <Home filterCompany={filterCompany} jobData={jobData} user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />
           </>
 
         } />
-        <Route exact path="/add" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
         {
           user ?
             <>
+              <Route exact path="/add" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
               <Route exact path="/edit/:id" element={<Form user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
-              <Route path="/companycard" element={<CompanyCard mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
+              <Route path="/companycard" element={<CompanyCard mood={mood} setMood={setMood} dark={dark} user={user} setDark={setDark} />} />
               <Route exact path="/my-job/:userId" element={
               <>
               <SearchBox locations={locations} categories={categories} />
@@ -111,12 +121,12 @@ function App() {
               <Route path="/admin/*" element={
               <>
               <SearchBox locations={locations} categories={categories} />
-              <Admin user={Admin} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />
+              <Admin user={user} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />
               </>
               } />
-              <Route path="/companycard" element={<CompanyCard mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
             </>
             : <>
+              <Route exact path="/add" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
               <Route exact path="/edit/:id" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
               <Route path="/companycard" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />
               <Route exact path="/my-job/:userId" element={<LogReg user={user} setUser={setUser} mood={mood} setMood={setMood} dark={dark} setDark={setDark} />} />

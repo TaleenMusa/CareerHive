@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const {secret} = require("../config/jwt.config");
+const Company = require("../models/company.model");
 
 
 class UserController {
@@ -31,8 +32,6 @@ class UserController {
                             }
                         })
                         .catch(err=> {
-                            console.log("password failed")
-                            console.log(err)
                             res.json({msg: "invalid login attempt", err})
                         } )
                 }
@@ -56,17 +55,55 @@ class UserController {
         }).json({msg:"ok"})
     }
     Jobs(req,res){
-        console.log(req.params.userId)
         User.findOne({_id: req.params.userId})
-            .populate("jobs", "title description location category ") 
+            .populate("jobs", "title description location category createdAt deadline company requirements status") 
             .then(user=> {
-                console.log(user)
                 res.json(user.jobs)
             })
             .catch(err=> res.json(err))
     }
+    setCompany(req, res) {
+        User.findOne({ _id: req.params.userId })
+            .then(user => {
+                if (user.company === undefined) {
+                    const company = new Company({
+                        name: req.body.name,
+                        logo: req.body.logo,
+                        social: req.body.social,
+                        user: req.params.userId
+                    });
+    
+                    company.save()
+                        .then(savedCompany => {
+                            User.findOneAndUpdate({ _id: req.params.userId }, { company: savedCompany._id }, { new: true })
+                                .then(updatedUser => res.json(updatedUser))
+                                .catch(err => res.json(err));
+                        })
+                        .catch(err => res.json(err));
+                } else {
+                    Company.findOneAndUpdate(
+                        { _id: user.company },
+                        {
+                            name: req.body.name,
+                            logo: req.body.logo,
+                            social: req.body.social,
+                            user: req.params.userId
+                        },
+                        { new: true } // Return the updated company object
+                    )
+                        .then(updatedCompany => res.json(updatedCompany))
+                        .catch(err => res.json(err));
+                }
+            })
+            .catch(err => res.json(err));
+    }
+    getCompany(req, res) {
+        console.log(req.params.id)
+        Company.findOne({ _id: req.params.id })
+            .then(company => res.json(company))
+            .catch(err => res.json(err).status(400));
+    }
+    
 
 }
-
-
 module.exports = new UserController()

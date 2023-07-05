@@ -6,7 +6,7 @@ import './JobList.css';
 
     const JobList = (props) => {
         const navigate = useNavigate();
-        const {user,jobData} = props
+        const {user,jobData,filterCompany} = props
         const {dark} = props
 
 
@@ -59,13 +59,18 @@ const options = {
                 key={job.id}
                 >
                 <td onClick={()=>{navigate(`/info/${job._id}`)}} style={tdStyle}>{job.title}</td>
-                <td style={tdStyle}>{job.company}</td>
-                
+                {
+                    job.company ? <td onClick={()=>{filterCompany(job.company._id)}} style={tdStyle}>{job.company.name}</td> : <td style={tdStyle}>No Company</td>
+                }                
 
                 {job.location ? <td   style={tdStyle}>{job.location.location}</td> : <td style={tdStyle}>No Location</td>}
                 {job.category ? <td  style={tdStyle}>{job.category.Category}</td> : <td style={tdStyle}>No Category</td>}
                 <td style={tdStyle}>{job.createdAt ? new Date(job.createdAt).toLocaleDateString('en-GB', options) : ''}</td>
-                <td style={tdStyle}>{job.deadline ? new Date(job.deadline).toLocaleDateString('en-GB', options) : ''}</td>
+                <td style={tdStyle}>{job.deadline ? new Date(job.deadline).toLocaleDateString('en-GB', options) : ''}
+                {
+                    job.deadline && new Date(job.deadline).getTime() < new Date().getTime() ? <span style={{color:'red'}}> (Expired)</span> : ''
+                }
+                </td>
                 </tr>
             ))}
             </tbody>

@@ -55,7 +55,9 @@ const options = {
                 <th style={thStyle}>Title</th>
                 <th style={thStyle}>Publish Date</th>
                 <th style={thStyle}>DeadLine</th>
+                <th style={thStyle}>Status</th>
                 <th style={thStyle}>Actions</th>
+
 
             </tr>
             </thead>
@@ -68,6 +70,7 @@ const options = {
                 
                 <td style={tdStyle}>{job.createdAt ? new Date(job.createdAt).toLocaleDateString('en-GB', options) : ''}</td>
                 <td style={tdStyle}>{job.deadline ? new Date(job.deadline).toLocaleDateString('en-GB', options) : ''}</td>
+                <td style={tdStyle}>{job.status}</td>
                 <td className='d-flex gap-3 ' style={tdStyle}><button className="btn btn-primary m-0" onClick={()=>{navigate(`/info/${job._id}`)}}>Edit</button>
                 <DeleteButton id={job._id} afterDelete={afterDelete} user={user} dark={dark}/>
                 </td>
