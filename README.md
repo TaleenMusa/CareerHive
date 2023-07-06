@@ -26,7 +26,7 @@ The development of CareerHive was a collaborative effort by the following team m
 
 2- Check full job information form the details page
 
-<img src="https://github.com/TaleenMusa/CareerHive/assets/126386351/b2b8616e-91ad-4143-9f40-0d6e3a5764fa.png" >
+<img src="https://github.com/TaleenMusa/CareerHive/assets/126386351/b4a4e04a-1fbe-4b63-bdc9-96024277eb83.png" >
 
 3- Add jobs from the form page
 
